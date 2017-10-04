@@ -153,12 +153,12 @@ public class main implements ActionListener {
         dataField = new JTextArea();
         dataField.setWrapStyleWord(true);
         dataField.setLocation(0, 0);
-        dataField.setSize(800, 800);
+        dataField.setSize(795, 640);
         dataField.setBorder(border);
 
         //Scroll bar (dataField wrapped into scrollPane)
         scrollPane = new JScrollPane(dataField);
-        scrollPane.setBounds(3,3,800,640);
+        scrollPane.setBounds(3,3,795,640);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         //add text field and scrollPane
