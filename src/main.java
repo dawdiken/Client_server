@@ -158,7 +158,7 @@ public class main implements ActionListener {
 
         //Scroll bar (dataField wrapped into scrollPane)
         scrollPane = new JScrollPane(dataField);
-        scrollPane.setBounds(3,3,800,800);
+        scrollPane.setBounds(3,3,800,640);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         //add text field and scrollPane
