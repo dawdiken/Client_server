@@ -1,3 +1,9 @@
+/*Assignment 2
+Name: David Kenny
+Student Number: G00070718
+*/
+
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileSystemView;
@@ -6,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -184,72 +189,115 @@ public class main implements ActionListener {
 
     private void readFile()
     {
-        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>()
+        SwingWorker<String[], Void> worker = new SwingWorker<String[], Void>()
         {
+            String timtTaken = "";
+            String pathOriginal = "";
+            String[] array = new String[100000];
             @Override
-            protected Void doInBackground() throws Exception
+            protected String[] doInBackground() throws Exception
             {
-                try
-                {
-                    doReadFile();
+                long startTime = 0;
+                JFileChooser fi = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+                int returnValue = fi.showOpenDialog(null);
+                if(returnValue == JFileChooser.APPROVE_OPTION){
+                    startTime = System.currentTimeMillis();
+                    File selecteddFile = fi.getSelectedFile();
+                    try {
+                        LOGGER.info("Attempting to open the specified file");
+                        String s = selecteddFile.getAbsolutePath();
+                        LOGGER.info("File path = " + selecteddFile);
+                        FileInputStream fi1 = new FileInputStream(s);
+                        DataInputStream di1 = new DataInputStream(fi1);
+                        BufferedReader br1 = new BufferedReader(new InputStreamReader(di1));
+                        String line = null;
+                        float sizeof  = selecteddFile.length();
+                        System.out.println("size if" + sizeof);
+                        final StringBuffer buffer = new StringBuffer();
+                        int i = 0;
+                        while ((line = br1.readLine()) != null) {
+                            array[i] = br1.readLine()  + "\n";
+                            i++;
+                        }
+                        pathOriginal = s;
+                    } catch (IOException io) {
+                        LOGGER.info("Failed to open the file.");
+                    }
                 }
-                catch (IOException e)
-                {
-                    System.out.println("Error: " + e.getMessage());
-                }
-                return null;
+                long stopTime = System.currentTimeMillis();
+                float elapsedTime = stopTime - startTime;
+                LOGGER.info("Time taken to choose file = " + (float)elapsedTime/1000 + " seconds");
+                timtTaken = Float.toString(elapsedTime/1000);
+                return array;
             }
 
             @Override
             protected void done()
             {
+                for(String W: array) {
+                    dataField.append(W);
+                }
                 LOGGER.info("Finished reading file");
+                timeField.setText(timtTaken + " seconds");
+                locationField.setText(pathOriginal);
             }
         };
         worker.execute();
-    }
-
-    private void doReadFile() throws IOException
-    {
-        long startTime = 0;
-        JFileChooser fi = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        int returnValue = fi.showOpenDialog(null);
-        if(returnValue == JFileChooser.APPROVE_OPTION){
-            startTime = System.currentTimeMillis();
-            File selecteddFile = fi.getSelectedFile();
-            try {
-                LOGGER.info("Attempting to open the specified file");
-                String s = selecteddFile.getAbsolutePath();
-                LOGGER.info("File path = " + selecteddFile);
-                FileInputStream fi1 = new FileInputStream(s);
-                DataInputStream di1 = new DataInputStream(fi1);
-                BufferedReader br1 = new BufferedReader(new InputStreamReader(di1));
-                dataField.read(br1,null);
-                locationField.setText(s);
-            } catch (IOException io) {
-                LOGGER.info("Failed to open the file.");
-            }
-        }
-        long stopTime = System.currentTimeMillis();
-        float elapsedTime = stopTime - startTime;
-        LOGGER.info("Time taken to choose file = " + (float)elapsedTime/1000 + " seconds");
-        timeField.setText(Float.toString(elapsedTime/1000) + " seconds");
     }
 
     private void zipFile()
     {
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>()
         {
+            String timeMod = "";
+            String reduction = "";
+            String sizeOfZipped = "";
+            String sizeOriginal = "";
+
             @Override
             protected Void doInBackground() throws Exception
             {
-                try
-                {
-                    doZipFile();
-                }
-                catch (IOException e)
-                {
-                    System.out.println("Error: " + e.getMessage());
+                JFileChooser fi = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+                int returnValue = fi.showOpenDialog(null);
+                if(returnValue == JFileChooser.APPROVE_OPTION) {
+
+                    File INPUT_FILE = fi.getSelectedFile();
+                    String zipFilePath = System.getProperty("user.home") + "\\Desktop\\bigzip";
+                    LOGGER.info("Path to zip file to: " + zipFilePath);
+
+                    try {
+                        float sizeof  = INPUT_FILE.length();
+                        sizeOriginal = Float.toString(sizeof);
+
+                        FileOutputStream fileOutputStream = new FileOutputStream(zipFilePath);
+                        ZipOutputStream zipOutputStream = new ZipOutputStream(fileOutputStream);
+
+                        ZipEntry ZipEntry = new ZipEntry(INPUT_FILE.getName());
+                        zipOutputStream.putNextEntry(ZipEntry);
+
+                        FileInputStream fileInputStream = new FileInputStream(INPUT_FILE);
+                        byte[] buf = new byte[1024];
+                        int bytesRead;
+
+                        while ((bytesRead = fileInputStream.read(buf)) > 0) {
+                            zipOutputStream.write(buf, 0, bytesRead);
+                        }
+                        zipOutputStream.closeEntry();
+                        zipOutputStream.close();
+                        zipOutputStream.close();
+                        File file = new File(zipFilePath);
+
+                        float sizeofZip  = file.length();
+                        sizeOfZipped = Float.toString(sizeofZip);
+                        float percentZip = ((sizeof - sizeofZip) / sizeof) * 100;
+                        double percentZipRound = Math.round(percentZip*100.0)/100.0;
+                        reduction = Double.toString(percentZipRound);
+                        SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+                        LOGGER.info("Date/Time file Zipped at: " + date.format(file.lastModified()));
+                        timeMod = date.format(file.lastModified());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 return null;
             }
@@ -258,56 +306,13 @@ public class main implements ActionListener {
             protected void done()
             {
                 LOGGER.info("Finished Zipping file");
+                reductionField.setText(reduction + "%");
+                sizeField.setText(sizeOriginal + " Bytes");
+                sizeOfZipField.setText(sizeOfZipped + " Bytes");
+                zipTtimeField.setText(timeMod);
             }
         };
         worker.execute();
-    }
-
-    private void doZipFile() throws IOException
-    {
-        JFileChooser fi = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        int returnValue = fi.showOpenDialog(null);
-        if(returnValue == JFileChooser.APPROVE_OPTION) {
-
-            File INPUT_FILE = fi.getSelectedFile();
-            String zipFilePath = System.getProperty("user.home") + "\\Desktop\\bigzip";
-            LOGGER.info("Path to zip file to: " + zipFilePath);
-
-            try {
-                float sizeof  = INPUT_FILE.length();
-                sizeField.setText(Float.toString(sizeof) + " Bytes");
-
-                FileOutputStream fileOutputStream = new FileOutputStream(zipFilePath);
-                ZipOutputStream zipOutputStream = new ZipOutputStream(fileOutputStream);
-
-                ZipEntry ZipEntry = new ZipEntry(INPUT_FILE.getName());
-                zipOutputStream.putNextEntry(ZipEntry);
-
-                FileInputStream fileInputStream = new FileInputStream(INPUT_FILE);
-                byte[] buf = new byte[1024];
-                int bytesRead;
-
-                while ((bytesRead = fileInputStream.read(buf)) > 0) {
-                    zipOutputStream.write(buf, 0, bytesRead);
-                }
-                zipOutputStream.closeEntry();
-                zipOutputStream.close();
-                zipOutputStream.close();
-                File file = new File(zipFilePath);
-
-                float sizeofZip  = file.length();
-                sizeOfZipField.setText(Float.toString(sizeofZip) + " Bytes");
-                float percentZip = ((sizeof - sizeofZip) / sizeof) * 100;
-                double percentZipRound = Math.round(percentZip*100.0)/100.0;
-                reductionField.setText(Double.toString(percentZipRound) + "%");
-
-                SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-                LOGGER.info("Date/Time file Zipped at: " + date.format(file.lastModified()));
-                zipTtimeField.setText(date.format(file.lastModified()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private static void createAndShowGUI() {
@@ -329,4 +334,3 @@ public class main implements ActionListener {
         });
     }
 }
-
