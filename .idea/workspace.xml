@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a689adda-3e8f-440e-8920-695f957eca31" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.java" afterPath="$PROJECT_DIR$/src/main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,10 +17,10 @@
       <file leaf-file-name="main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1539">
-              <caret line="324" column="0" lean-forward="false" selection-start-line="324" selection-start-column="0" selection-end-line="326" selection-end-column="53" />
+            <state relative-caret-position="75">
+              <caret line="330" column="13" lean-forward="false" selection-start-line="330" selection-start-column="13" selection-end-line="330" selection-end-column="13" />
               <folding>
-                <element signature="e#0#13550#0" expanded="true" />
+                <element signature="e#0#13035#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
@@ -306,7 +305,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13550#0" expanded="true" />
+            <element signature="e#0#13035#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -317,7 +316,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13550#0" expanded="true" />
+            <element signature="e#0#13035#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -328,19 +327,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13550#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/NewsReader.java" />
-    <entry file="file://$PROJECT_DIR$/src/main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#13550#0" expanded="true" />
+            <element signature="e#0#13035#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -352,7 +339,19 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13550#0" expanded="true" />
+            <element signature="e#0#13035#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/NewsReader.java" />
+    <entry file="file://$PROJECT_DIR$/src/main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13035#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -364,7 +363,7 @@
         <state relative-caret-position="7250">
           <caret line="290" column="5" lean-forward="false" selection-start-line="290" selection-start-column="5" selection-end-line="290" selection-end-column="5" />
           <folding>
-            <element signature="e#0#13550#0" expanded="true" />
+            <element signature="e#0#13035#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -375,7 +374,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13550#0" expanded="true" />
+            <element signature="e#0#13035#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -386,7 +385,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13550#0" expanded="true" />
+            <element signature="e#0#13035#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -397,7 +396,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13550#0" expanded="true" />
+            <element signature="e#0#13035#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -408,7 +407,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13550#0" expanded="true" />
+            <element signature="e#0#13035#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -417,10 +416,10 @@
     <entry file="file://$PROJECT_DIR$/src/NewsReader.java" />
     <entry file="file://$PROJECT_DIR$/src/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1539">
-          <caret line="324" column="0" lean-forward="false" selection-start-line="324" selection-start-column="0" selection-end-line="326" selection-end-column="53" />
+        <state relative-caret-position="75">
+          <caret line="330" column="13" lean-forward="false" selection-start-line="330" selection-start-column="13" selection-end-line="330" selection-end-column="13" />
           <folding>
-            <element signature="e#0#13550#0" expanded="true" />
+            <element signature="e#0#13035#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>

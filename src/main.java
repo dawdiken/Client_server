@@ -1,6 +1,6 @@
 /*Assignment 2
 To do: Remove Jfile chooser from swing worker
-        sort out strinng values returned from zip file
+       add this stuff to the actionlistnener and pass the values in
 Name: David Kenny
 Student Number: G00070718
 */
@@ -329,19 +329,6 @@ public class main implements ActionListener {
                 catch(Exception e){
                 }
             }
-//            {
-//                try {
-//                    String reduction = get();
-//
-//                    LOGGER.info("Finished Zipping file");
-//                    reductionField.setText(reduction + "%");
-//                    sizeField.setText(sizeOriginal + " Bytes");
-//                    sizeOfZipField.setText(sizeOfZipped + " Bytes");
-//                    zipTtimeField.setText(timeMod);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
         };
         worker.execute();
     }
