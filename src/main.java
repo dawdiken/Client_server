@@ -1,4 +1,6 @@
 /*Assignment 2
+To do: Remove Jfile chooser from swing worker
+        sort out strinng values returned from zip file
 Name: David Kenny
 Student Number: G00070718
 */
@@ -253,16 +255,20 @@ public class main implements ActionListener {
 
     private void zipFile()
     {
-        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>()
+        SwingWorker<String, String> worker = new SwingWorker<String, String>()
         {
-            String timeMod = "";
-            String reduction = "";
-            String sizeOfZipped = "";
-            String sizeOriginal = "";
+
 
             @Override
-            protected Void doInBackground() throws Exception
+            protected String  doInBackground() throws Exception
             {
+
+                String timeMod = "";
+                String reduction = "";
+                String sizeOfZipped = "";
+                String sizeOriginal = "";
+
+
                 JFileChooser fi = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
                 int returnValue = fi.showOpenDialog(null);
                 if(returnValue == JFileChooser.APPROVE_OPTION) {
@@ -305,18 +311,37 @@ public class main implements ActionListener {
                         e.printStackTrace();
                     }
                 }
-                return null;
+                return  reduction + "," + sizeOriginal +"," + sizeOfZipped + "," + timeMod ;
             }
 
             @Override
             protected void done()
             {
-                LOGGER.info("Finished Zipping file");
-                reductionField.setText(reduction + "%");
-                sizeField.setText(sizeOriginal + " Bytes");
-                sizeOfZipField.setText(sizeOfZipped + " Bytes");
-                zipTtimeField.setText(timeMod);
+                try{
+                    String reduction = get();
+                    String[] values = reduction.split(",");
+                    LOGGER.info("Finished Zipping file");
+                    reductionField.setText(values[0] + "%");
+                    sizeField.setText(values[1] + " Bytes");
+                    sizeOfZipField.setText(values[2] + " Bytes");
+                    zipTtimeField.setText(values[3]);
+                }
+                catch(Exception e){
+                }
             }
+//            {
+//                try {
+//                    String reduction = get();
+//
+//                    LOGGER.info("Finished Zipping file");
+//                    reductionField.setText(reduction + "%");
+//                    sizeField.setText(sizeOriginal + " Bytes");
+//                    sizeOfZipField.setText(sizeOfZipped + " Bytes");
+//                    zipTtimeField.setText(timeMod);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
         };
         worker.execute();
     }
