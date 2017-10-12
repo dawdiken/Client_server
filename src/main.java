@@ -193,10 +193,11 @@ public class main implements ActionListener {
         {
             String timtTaken = "";
             String pathOriginal = "";
-            String[] array = new String[100000];
+
             @Override
             protected String[] doInBackground() throws Exception
             {
+                String[] array = new String[100000];
                 long startTime = 0;
                 JFileChooser fi = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
                 int returnValue = fi.showOpenDialog(null);
@@ -234,12 +235,17 @@ public class main implements ActionListener {
             @Override
             protected void done()
             {
-                for(String W: array) {
-                    dataField.append(W);
+                try{
+                    String array[] = get();
+                    for(String W: array) {
+                        dataField.append(W);
+                    }
+                    LOGGER.info("Finished reading file");
+                    timeField.setText(timtTaken + " seconds");
+                    locationField.setText(pathOriginal);
                 }
-                LOGGER.info("Finished reading file");
-                timeField.setText(timtTaken + " seconds");
-                locationField.setText(pathOriginal);
+                catch(Exception e){
+                }
             }
         };
         worker.execute();
